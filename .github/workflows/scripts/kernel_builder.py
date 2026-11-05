@@ -409,8 +409,10 @@ CONFIG_KSU_SUSFS_OPEN_REDIRECT=y
             logger.warning(f"配置文件不存在: {config_file}")
             return
 
+        kpm_config = "CONFIG_KPM=y" if self.config.use_kpm else "CONFIG_KPM=n"
+        config_template = self.KERNEL_CONFIG_TEMPLATE.replace("CONFIG_KPM=y", kpm_config)
         with open(config_file, "a") as f:
-            f.write(self.KERNEL_CONFIG_TEMPLATE)
+            f.write(config_template)
             if self.config.kernel_version != "6.6":
                 f.write("CONFIG_KSU_SUSFS_SUS_PATH=y\n")
             else:
