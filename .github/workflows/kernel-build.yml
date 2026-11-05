@@ -112,7 +112,7 @@ jobs:
         uses: AdityaGarg8/remove-unwanted-software@v5
         with:
           remove-dotnet: 'true'
-          remove-android: 'true'
+          remove-android: 'false'
           remove-haskell: 'true'
           remove-codeql: 'true'
           remove-docker-images: 'true'
@@ -131,8 +131,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update && sudo apt upgrade -y
-          sudo apt install -y ccache python3 git curl wget zip unzip libc6-dev
-          sudo apt-get install --reinstall -y libc6-dev linux-libc-dev
+          sudo apt install -y ccache python3 git curl wget zip unzip
           pip install PyYAML
 
       - name: Configure ccache
